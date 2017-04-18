@@ -7,18 +7,27 @@
 <title>Uotel</title>
 </head>
 <body>
-<h1> Welcome to the uotel login <%=request.getParameter("username")%>!</h1>
-<form>
-<ul>
-	<li><input type="submit" value="Logout and Review"/></li>
-	<li><input type="submit" value="Create a listing."/></li>
-	<li><input type="submit" value="Alter a listing"/></li>
-	<li><input type="submit" value="Record a stay"/></li>
-	<li><input type="submit" value="Search for a house"/></li>
-	<li><input type="submit" value="View most popular houses by category"/></li>
-	<li><input type="submit" value="View most expensive by category"/></li>
-	<li><input type="submit" value="Vies highest rated by category"/></li>
-</ul>	
-</form>
+<%
+	boolean succesful_login = true;
+	if(!succesful_login){ %>
+		<p>Looks like username and password were not valid please follow this link to try again.</p>
+		<br>
+		<a href="login.jsp"> Retry!</a>
+	<%}else{%> 
+	
+	<h1> Welcome to the uotel login <%=request.getParameter("username")%>!</h1>
+	<form>
+	<ul>
+		<li><input type="submit" value="Logout and Review"/></li>
+		<li><input type="submit" value="Create a listing."/></li>
+		<li><input type="submit" value="Alter a listing"/></li>
+		<li><input type="submit" value="Record a stay"/></li>
+		<li><input type="submit" value="Search for a house"/></li>
+		<li><input type="submit" value="View most popular houses by category"/></li>
+		<li><input type="submit" value="View most expensive by category"/></li>
+		<li><input type="submit" value="Vies highest rated by category"/></li>
+	</ul>	
+	</form>
+	<%} %>
 </body>
 </html>
