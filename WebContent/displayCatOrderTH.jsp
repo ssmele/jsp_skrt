@@ -7,12 +7,17 @@ if(th_list == null || th_list.isEmpty()){%>
 <p> No th's to display.</p>
 <%}else{
 int count = 1;
-for(TH th : th_list){%>
+String category = "";
+for(TH th : th_list){
+	if(true){
+		if(!category.equals(th.getCategory())){
+			category = th.getCategory();
+			%> <h4> <%=category %></h4> <%
+		}
+	}
+%>
 	<p><%=count%>. name: <%=th.getName()%>, price: $<%=th.getPrice()%>, address: <%=th.getAddress()%> </p> 
 <%
 count++;
 }
 }%>
-
-
-

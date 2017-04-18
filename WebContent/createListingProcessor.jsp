@@ -40,6 +40,6 @@ if(created != null){%>
 	<a href="createListing.jsp"> Click to try again! </a>
 	<br>
 	<a href="main.jsp">Click to return to main page!</a>
-<%}%>
+<%}%>	
 
 <%@ include file="footer.jsp"%>
