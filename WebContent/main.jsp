@@ -8,41 +8,61 @@
 </head>
 <body>
 	<%
-	//Gather up some needed variables.
-	Querys q = new Querys();
-	Connector con = new Connector();
-	String login = request.getParameter("login");
-	String register = request.getParameter("register");
-	
-	//Try to login the user/ register them depending on the hidden variable passed in.
+	//Initalize needed variables.
 	User current_user = null;
-	if(login != null){
-		current_user = q.loginUser(request.getParameter("username"), request.getParameter("password"), con.stmt);
-	}else if(register != null){
-		current_user = q.newUser(request.getParameter("username"), request.getParameter("name"), request.getParameter("password"),
-				request.getParameter("address"), request.getParameter("phone"), false, con.stmt);
+	String login;
+	String register;
+	
+	//If the user session is equal to null need to check if ur is signing in or logining in.
+	//If they get to the else it means that they have traveled here from another page 
+	if(session.getAttribute("user") == null){
+		Querys q = new Querys();
+		Connector con = new Connector();
+		login = request.getParameter("login");
+		register = request.getParameter("register");
+	
+		//Try to login the user/ register them depending on the hidden variable passed in.
+		if(login != null){
+			current_user = q.loginUser(request.getParameter("username"), request.getParameter("password"), con.stmt);
+		}else if(register != null){
+			current_user = q.newUser(request.getParameter("username"), request.getParameter("name"), request.getParameter("password"),
+					request.getParameter("address"), request.getParameter("phone"), false, con.stmt);
+		}
+		
+		session.setAttribute("user", current_user);
+	}else{
+		//Try and get the user object out to see the preexisting user.
+		//Also need to reset session variables here that could be used later on.
+		login = null;
+		register = null;
+		current_user = (User)session.getAttribute("user");
+		session.setAttribute("th_list", null);
 	}
 	
+	//This logic decides what needs to be displayed.
+	//Will display different error messages depending on if they are trying to sign in or not.
 	if(current_user == null && login != null){ %>
 		<h1>Their was a problem loginning you in please try again by following this link.</h1>
 		<a href="login.jsp"> Retry!</a>
 	<%}else if (current_user == null && register != null){%>
 		<h1>Their was a problem registering a new user please try again by following this link.</h1>
 		<a href="login.jsp"> Retry!</a>
-	<%}else{
-	session.setAttribute("user", "swag");
+	<%}else if(current_user != null){
 	%>
-	<h1> Welcome to the uotel login <%=request.getParameter("username")%>!</h1>
+	<h1> Welcome to the uotel login <%=current_user.getLogin()%>!</h1>
 	<ul>
 		<li><input type="button" value="Logout and Review" onclick="location.href='logout.jsp'"/></li>
-		<li><input type="submit" value="Create a listing."/></li>
-		<li><input type="submit" value="Alter a listing"/></li>
+		<li><input type="submit" value="Create a listing" onClick="location.href='createListing.jsp'"/></li>
+		<li><input type="submit" value="Alter a listing" onclick="location.href='alter.jsp'"></li>
 		<li><input type="submit" value="Record a stay"/></li>
 		<li><input type="submit" value="Search for a house"/></li>
 		<li><input type="submit" value="View most popular houses by category"/></li>
 		<li><input type="submit" value="View most expensive by category"/></li>
 		<li><input type="submit" value="Vies highest rated by category"/></li>
 	</ul>	
-	<%} %>
-</body>
-</html>
+	<%}else{%>
+		<p>Something went wrong please try again!</p>
+		<br>
+		<a href="login.jsp"> Click to try again!</a>
+	<%}%>
+<%@ include file="footer.jsp" %>
