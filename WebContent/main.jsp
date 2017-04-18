@@ -8,18 +8,33 @@
 </head>
 <body>
 	<%
+	//Gather up some needed variables.
 	Querys q = new Querys();
 	Connector con = new Connector();
-	User current_user = q.loginUser(request.getParameter("username"), request.getParameter("password"), con.stmt);
+	String login = request.getParameter("login");
+	String register = request.getParameter("register");
 	
-	if(current_user == null){ %>
-		<h1>Looks like username and password were not valid please follow this link to try again.</h1>
+	//Try to login the user/ register them depending on the hidden variable passed in.
+	User current_user = null;
+	if(login != null){
+		current_user = q.loginUser(request.getParameter("username"), request.getParameter("password"), con.stmt);
+	}else if(register != null){
+		current_user = q.newUser(request.getParameter("username"), request.getParameter("name"), request.getParameter("password"),
+				request.getParameter("address"), request.getParameter("phone"), false, con.stmt);
+	}
+	
+	if(current_user == null && login != null){ %>
+		<h1>Their was a problem loginning you in please try again by following this link.</h1>
 		<a href="login.jsp"> Retry!</a>
-	<%}else{%> 
-	
+	<%}else if (current_user == null && register != null){%>
+		<h1>Their was a problem registering a new user please try again by following this link.</h1>
+		<a href="login.jsp"> Retry!</a>
+	<%}else{
+	session.setAttribute("user", "swag");
+	%>
 	<h1> Welcome to the uotel login <%=request.getParameter("username")%>!</h1>
 	<ul>
-		<li><input type="submit" value="Logout and Review"/></li>
+		<li><input type="button" value="Logout and Review" onclick="location.href='logout.jsp'"/></li>
 		<li><input type="submit" value="Create a listing."/></li>
 		<li><input type="submit" value="Alter a listing"/></li>
 		<li><input type="submit" value="Record a stay"/></li>
@@ -27,15 +42,7 @@
 		<li><input type="submit" value="View most popular houses by category"/></li>
 		<li><input type="submit" value="View most expensive by category"/></li>
 		<li><input type="submit" value="Vies highest rated by category"/></li>
-	</ul>
-	<%
-	if(current_user.isAdmin()){ %>
-		<h3>Admin Options</h3>
-		<ul>
-			<li><input type="submit" value="View top m 'trusted' users."/></li>
-			<li><input type="submit" value="View top m 'useful' users."/></li>
-		</ul>
-	<%}%>	
+	</ul>	
 	<%} %>
 </body>
 </html>
