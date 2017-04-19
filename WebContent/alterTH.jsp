@@ -65,7 +65,7 @@ System.out.println("0.Done (When you want to stop updating)");
 To alter keywords and availabitities click on the coresponding button below!
 </h2>
 <ul>
-	<li><input type="button" value="Alter keywords on this TH" onclick="location.href=''"/></li>
-	<li><input type="submit" value="Alter availabilities on this TH" onClick="location.href=''"/></li>
+	<li><input type="button" value="Alter keywords on this TH" onclick="location.href='alterKeywords.jsp'"/></li>
+	<li><input type="submit" value="Alter availabilities on this TH" onClick="location.href='alterAvailabilies.jsp'"/></li>
 </ul>
 <%@ include file="footer.jsp"%>
