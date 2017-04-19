@@ -1,4 +1,4 @@
-<%@ page language="java" import="cs5530.*" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" import="cs5530.*, java.util.*" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,7 +15,7 @@
 	
 	//If the user session is equal to null need to check if ur is signing in or logining in.
 	//If they get to the else it means that they have traveled here from another page 
-	if(session.getAttribute("user") == null){
+	if(request.getParameter("login")!= null){
 		Querys q = new Querys();
 		Connector con = new Connector();
 		login = request.getParameter("login");
@@ -30,6 +30,8 @@
 		}
 		
 		session.setAttribute("user", current_user);
+		session.setAttribute("visit_cart", new ArrayList<Reservation>());
+		session.setAttribute("reservation_cart", new ArrayList<ResPeriodPair>());
 		session.setAttribute("current_th", null);
 		session.setAttribute("th_list", null);
 	}else{
@@ -57,7 +59,7 @@
 		<li><input type="button" value="Logout and Review" onclick="location.href='logout.jsp'"/></li>
 		<li><input type="submit" value="Create a listing" onClick="location.href='createListing.jsp'"/></li>
 		<li><input type="submit" value="Alter a listing" onclick="location.href='alter.jsp'"></li>
-		<li><input type="submit" value="Record a stay"/></li>
+		<li><input type="submit" value="Record a stay" onClick="location.href='recordStay.jsp'"/></li>
 		<li><input type="submit" value="Search for a house"/></li>
 		<li><input type="submit" value="View most popular houses by category" onClick="location.href='limitGetter.jsp?type=popular'"/></li>
 		<li><input type="submit" value="View most expensive by category" onClick="location.href='limitGetter.jsp?type=expensive'"/></li>
