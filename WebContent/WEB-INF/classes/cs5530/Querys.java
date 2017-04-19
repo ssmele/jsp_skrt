@@ -446,21 +446,18 @@ public class Querys {
 	 * @param fv_date
 	 * @param stmt
 	 */
-	public void favoriteTH(TH th, String login, Date fv_date, Statement stmt) {
+	public String favoriteTH(TH th, String login, Date fv_date, Statement stmt) {
 		String sql = "insert into favorite VALUES (" + Integer.toString(th.getHid()) + ",'" + login + "', '"
 				+ fv_date.toString() + "')";
 
 		// Execute the insert for the favorites table.
 		try {
 			stmt.executeUpdate(sql);
-			System.out.println(login + " now favorites " + "TH with values " + th.prettyString()
-					+ "\n---------------------------------");
+			return login + " now favorites TH " + th.getName();
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
-			System.out.println("You already favorite this place. \n---------------------------------");
-			return;
+			return "You already favorite this TH.";
 		} catch (Exception e) {
-			System.out.println("Cannot execute the query.");
-			return;
+			return "Something went wrong executing your request";
 		}
 	}
 

@@ -61,9 +61,9 @@
 		<li><input type="submit" value="Alter a listing" onclick="location.href='alter.jsp'"></li>
 		<li><input type="submit" value="Record a stay" onClick="location.href='recordStay.jsp'"/></li>
 		<li><input type="submit" value="Search for a house"/></li>
-		<li><input type="submit" value="View most popular houses by category" onClick="location.href='limitGetter.jsp?type=popular'"/></li>
-		<li><input type="submit" value="View most expensive by category" onClick="location.href='limitGetter.jsp?type=expensive'"/></li>
-		<li><input type="submit" value="Vies highest rated by category" onClick="location.href='limitGetter.jsp?type=rated'"/></li>
+		<li><input type="submit" value="View most popular houses by category" onClick="location.href='limitGetter.jsp?type=popular&for=th'"/></li>
+		<li><input type="submit" value="View most expensive by category" onClick="location.href='limitGetter.jsp?type=expensive&for=th'"/></li>
+		<li><input type="submit" value="Vies highest rated by category" onClick="location.href='limitGetter.jsp?type=rated&for=th'"/></li>
 	</ul>
 	<%}else{%>
 		<p>Something went wrong please try again!</p>

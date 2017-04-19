@@ -9,14 +9,14 @@ if(th_list == null || th_list.isEmpty()){%>
 int count = 1;
 String category = "";
 for(TH th : th_list){
-	if(true){
 		if(!category.equals(th.getCategory())){
 			category = th.getCategory();
 			%> <h4> <%=category %></h4> <%
 		}
-	}
 %>
-	<p><%=count%>. name: <%=th.getName()%>, price: $<%=th.getPrice()%>, address: <%=th.getAddress()%> </p> 
+	<%String title = count + ". Name: " + th.getName() + " price: " + th.getPrice() + " address: " + th.getAddress(); %>
+	<%String url = "location.href='viewTH.jsp?index=" + (count-1) + "'"; %>
+	<p><input type="submit" value="<%=title%>" onClick="<%=url%>"/></p> 
 <%
 count++;
 }

@@ -8,7 +8,9 @@ if(th_list == null || th_list.isEmpty()){%>
 <%}else{
 int count = 1;
 for(TH th : th_list){%>
-	<p><%=count%>. name: <%=th.getName()%>, price: $<%=th.getPrice()%>, address: <%=th.getAddress()%> </p> 
+	<%String title = count + ". Name: " + th.getName() + " price: " + th.getPrice() + " address: " + th.getAddress(); %>
+	<%String url = "location.href='viewTH.jsp?index=" + (count-1) + "'"; %>
+	<p><input type="submit" value="<%=title%>" onClick="<%=url%>"/></p> 
 <%
 count++;
 }

@@ -18,8 +18,7 @@ public class Feedback {
 	
 	@Override
 	public String toString() {
-		return "Feedback [fid=" + fid + ", text=" + text + ", date=" + date + ", score=" + score + ", login=" + login
-				+ ", hid=" + hid + "]";
+		return "Description: " + text + ", Date: " + date + ", Score: " + score + ", User: " + login;
 	}
 	
 	public Feedback(int fid, String text, Date date, int score, String login, int hid) {
