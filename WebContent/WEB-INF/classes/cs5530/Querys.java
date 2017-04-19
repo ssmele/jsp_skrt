@@ -29,7 +29,7 @@ public class Querys {
 	 * @param date
 	 * @param con
 	 */
-	public void insertFeedback(User usr, TH th, String text, int score, Date date, Connection con) {
+	public String insertFeedback(User usr, TH th, String text, int score, Date date, Connection con) {
 
 		// First need to do checks to ensure user does nto own the th they are
 		// reviewing, and that they have not review this th before.
@@ -49,7 +49,7 @@ public class Querys {
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("cannot execute query: " + ownershipCheck);
-			return;
+			return "Cannot leave feedback at this time please try again later.";
 		} finally {
 			try {
 				if (rs != null && !rs.isClosed())
@@ -61,7 +61,7 @@ public class Querys {
 
 		if (count > 0) {
 			System.out.println("You own this TH you cant leave it feedback.");
-			return;
+			return "You own this TH you cant leave it feedback.";
 		}
 
 		// Checking to see if this user has already left a review.
@@ -75,7 +75,7 @@ public class Querys {
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("cannot execute query: " + ownershipCheck);
-			return;
+			return "Cannot leave feedback at this time please try again later.";
 		} finally {
 			try {
 				if (rs != null && !rs.isClosed())
@@ -87,7 +87,7 @@ public class Querys {
 
 		if (count > 0) {
 			System.out.println("You have already left feedback at this TH.");
-			return;
+			return "You have already left feedback at this TH.";
 		}
 
 		// Finally insert the feedback if it has passed all the tests.
@@ -105,13 +105,14 @@ public class Querys {
 
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 			System.out.println("Youve already given feedback !");
-			return;
+			return "Youve already given feedback !";
 		} catch (Exception e) {
 			System.out.println("cannot execute the query");
-			return;
+			return "Cannot leave feedback at this time please try again later.";
 		}
 
 		System.out.println("Succesfully left feedback on " + th.getName());
+		return "Succesfully left feedback!";
 	}
 
 	/**

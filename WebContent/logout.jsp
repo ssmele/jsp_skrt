@@ -12,6 +12,13 @@ int remove_number;
 if(request.getParameter("remove_visit") != null){
 	remove_number = Integer.parseInt(request.getParameter("remove_visit"));
 	visitCart.remove(--remove_number);
+	session.setAttribute("visit_cart", visitCart);
+}
+
+if(request.getParameter("remove_res") != null){
+	remove_number = Integer.parseInt(request.getParameter("remove_res"));
+	reservationCart.remove(--remove_number);
+	session.setAttribute("reservation_cart", reservationCart);
 }
 
 %>
@@ -19,6 +26,20 @@ if(request.getParameter("remove_visit") != null){
 <h1> Summary Page</h1>
 <hr>
 <h2> Reservations </h2>
+<%
+if(reservationCart.isEmpty()){
+	%><p> No reservations in your cart!</p><%	
+}else{
+	%><p>Below are a list of current reservations in  your cart click on one to remove it.</p><%
+	int count = 1;
+	for(ResPeriodPair res: reservationCart){%>
+		<input type="button" value="Reservation: <%=res.getReservation().toString()%>, Period: <%=res.getPeriod().toString()%>" onclick="location.href='logout.jsp?remove_res=<%=count%>'"/>
+		<br>
+	<%
+	count++;
+	}
+}
+%>
 <hr>
 <h2> Visits </h2>
 <%
