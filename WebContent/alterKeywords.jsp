@@ -23,7 +23,7 @@ if(request.getParameter("keyword_to_add") != null){
 
 if(keywords.isEmpty()){
 	%><p> No keywords to alter!</p>
-	<a href="alter.jsp">Click here to alter more TH's</a> <%	
+	<a href="alterTH.jsp">Click to go back to altering current TH!</a><%	
 }else{
 	%><p>Below are a list of keywords assocaited with the current TH. Click one to remove it from the TH!</p><%
 	int count = 1;
@@ -42,7 +42,8 @@ if(keywords.isEmpty()){
 	<br/>
 	<input type="submit" value="Add!"/>
 </form>
-
+<br/>
+<a href="alterTH.jsp">Click to go back to altering current TH!</a>
 
 
 <%@ include file="footer.jsp"%>

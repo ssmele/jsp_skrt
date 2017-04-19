@@ -13,9 +13,9 @@ Querys q = new Querys();
 Connector con = new Connector();
 TH current_th = (TH)session.getAttribute("current_th");
 
-if(category != null)
+if(category != "")
 	current_th.setCategory(category);
-if(price != null){
+if(price != ""){
 	int real_price;
 	try{
 		real_price = Integer.parseInt(price);
@@ -29,31 +29,27 @@ if(price != null){
 		%> <p> UNABLE TO UPDATE price FIELD! PLEASE PROVIDE VALID NUMBER!</p> <%
 	}
 }
-if(year_built != null)
+if(year_built != "")
 	current_th.setYear_built(year_built);
-if(name != null)
+if(name != "")
 	current_th.setName(name);
-if(address != null)
+if(address != "")
 	current_th.setAddress(address);
-if(url != null)
+if(url != "")
 	current_th.setUrl(url);
-if(phone != null)
+if(phone != "")
 	current_th.setPhone(phone);
 TH updated = q.updateTH(current_th, con.con);
 //If created is not null then we throw down.
 if(updated != null){
-	session.setAttribute("current_th", null);
 %>
 	<h4>Valid fields updated!</h4>
-	<a href="main.jsp">Click to return to main page!</a>
 	<br>
-	<a href="alter.jsp"> Click to alter alter more of your THs! </a>
+	<a href="alterTH.jsp">Click to go back to altering current TH!</a>
 <%}else{
-	session.setAttribute("current_th", null);
 %> 
 	<p> Could not update the fields given. </p>
-	<a href="alter.jsp"> Click to try again! </a>
-	<br>
-	<a href="main.jsp">Click to return to main page!</a>
+	<br/>
+	<a href="alterTH.jsp">Click to go back to altering current TH!</a>
 <%}%>	
 <%@ include file="footer.jsp"%>

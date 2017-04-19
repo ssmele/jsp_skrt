@@ -30,6 +30,8 @@
 		}
 		
 		session.setAttribute("user", current_user);
+		session.setAttribute("current_th", null);
+		session.setAttribute("th_list", null);
 	}else{
 		//Try and get the user object out to see the preexisting user.
 		//Also need to reset session variables here that could be used later on.

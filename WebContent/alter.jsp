@@ -5,6 +5,7 @@
 
 <%
 Querys q = new Querys();
+session.setAttribute("current_th", null);
 Connector con = new Connector();
 ArrayList<TH> temp_th_list = q.getUsersTHs(header_user.getLogin(), con.stmt);
 if(temp_th_list != null && !temp_th_list.isEmpty()){
