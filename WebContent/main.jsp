@@ -36,6 +36,7 @@
 		login = null;
 		register = null;
 		current_user = (User)session.getAttribute("user");
+		session.setAttribute("current_th", null);
 		session.setAttribute("th_list", null);
 	}
 	

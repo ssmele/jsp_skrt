@@ -13,12 +13,12 @@ session.setAttribute("th_list", temp_th_list);
 
 <%@ include file="displayTHs.jsp"%>
 
-<form action="thSelected.jsp">
-<label>
-	Number of TH you want to alter:
-   <input type="number">
-</label>
+
+<form action="alterTH.jsp">
+	<input type="number" name="th_num"/>
+	<input type="submit" value="Choose!"/>
 </form>
+
 
 <%}else{%>
 <p> You dont have any TH's to alter!
