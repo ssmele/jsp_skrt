@@ -182,7 +182,7 @@ public class Querys {
 	 * @param rating
 	 * @param con
 	 */
-	public void insertRating(User user, int fid, int rating, Connection con) {
+	public String insertRating(User user, int fid, int rating, Connection con) {
 		try {
 			PreparedStatement insertRating = con.prepareStatement("insert into rate " + "values (?, ?, ?)");
 
@@ -191,12 +191,12 @@ public class Querys {
 			insertRating.setInt(3, rating);
 
 			insertRating.executeUpdate();
+			return "You have successfully rated this feedback";
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 			System.out.println("Youve already rated this feedback!");
-			return;
+			return "You've already rated this feedback!";
 		} catch (Exception e) {
-			System.out.println("cannot execute the query");
-			return;
+			return "Something went wrong in handling your request.";
 		}
 	}
 
@@ -422,18 +422,16 @@ public class Querys {
 	 * @param trust
 	 * @param stmt
 	 */
-	public void trustUser(String trustee, String truster, boolean trust, Statement stmt) {
+	public String trustUser(String trustee, String truster, boolean trust, Statement stmt) {
 		String sql = "insert into trust VALUES (" + "'" + trustee + "','" + truster + "', " + trust + ")";
 
 		try {
 			stmt.executeUpdate(sql);
-			System.out.println(truster + " now " + (trust ? "does trust " : "doesn't trust") + trustee);
+			return truster + " now " + (trust ? "does trust " : "doesn't trust") + trustee;
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
-			System.out.println("You have already given a trust rating on this user.");
-			return;
+			return "You have already given a trust rating on this user.";
 		} catch (Exception e) {
-			System.out.println("Cannot execute the query.");
-			return;
+			return "Your last request could not be processed.";
 		}
 	}
 

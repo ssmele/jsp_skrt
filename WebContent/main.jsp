@@ -60,7 +60,7 @@
 		<li><input type="submit" value="Create a listing" onClick="location.href='createListing.jsp'"/></li>
 		<li><input type="submit" value="Alter a listing" onclick="location.href='alter.jsp'"></li>
 		<li><input type="submit" value="Record a stay" onClick="location.href='recordStay.jsp'"/></li>
-		<li><input type="submit" value="Search for a house"/></li>
+		<li><input type="submit" value="Search for a house" onClick="location.href='browse.jsp'"/></li>
 		<li><input type="submit" value="View most popular houses by category" onClick="location.href='limitGetter.jsp?type=popular&for=th'"/></li>
 		<li><input type="submit" value="View most expensive by category" onClick="location.href='limitGetter.jsp?type=expensive&for=th'"/></li>
 		<li><input type="submit" value="Vies highest rated by category" onClick="location.href='limitGetter.jsp?type=rated&for=th'"/></li>
