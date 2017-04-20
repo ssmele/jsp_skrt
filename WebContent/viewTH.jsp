@@ -34,7 +34,7 @@ String url = th.getUrl();
 	<li><input type="button" value="Mark as Favorite" onclick="location.href='favorite.jsp'"/></li>
 	<li><input type="button" value="View Feedback" onclick="location.href='viewFeedback.jsp'"/></li>
 	<li><input type="button" value="Give Feedback" onclick="location.href='giveFeedback.jsp'"/></li>
-	<li><input type="button" value="Make a Reservation" onclick="location.href='logout.jsp'"/></li>
+	<li><input type="button" value="Make a Reservation" onclick="location.href='createReservation.jsp'"/></li>
 	<li><input type="button" value="View Most Useful Feedback" onclick="location.href='limitGetter.jsp?for=fb'"/></li>
 </ul>
 
