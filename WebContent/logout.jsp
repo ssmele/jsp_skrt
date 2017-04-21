@@ -59,6 +59,6 @@ if(visitCart.isEmpty()){
 
 <hr>
 <h4> Click the button checkout button when you have completed editing your selection. </h4>
-<input type="submit" value="CHECKOUT!" onclick="location.href='index.html'"/>
+<input type="submit" value="CHECKOUT!" onclick="location.href='checkout.jsp'"/>
 
 <%@ include file="footer.jsp" %>

@@ -42,8 +42,7 @@ if(request.getParameter("from_date_to_add") != null && request.getParameter("to_
 
 
 if(periods.isEmpty()){
-	%><p> No availabilities to alter!</p>
-	<a href="alterTH.jsp">Click to go back to altering current TH!</a> <%	
+	%><p> No availabilities to alter!</p><%	
 }else{
 	%><p>Below are a list of availabilities for this TH. Click one to remove it from the TH!</p><%
 	int count = 1;

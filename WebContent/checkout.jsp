@@ -32,9 +32,8 @@ if(visitCart != null && visitCart.size() > 0){
 //Display any failed visit loggings.
 if(rejected == null){
 }
-else if(rejected.size() ==0){%>
-<p> Succesfully logged all your visits.</p>
-<%}else{%>
+else if(rejected.size() ==0){
+}else{%>
 	<p> Could not succesfully record the following visits. Sorry about that please try again later!</p><%
 	for(Reservation res: rejected){
 		%><p><%=res.toString()%></p><%

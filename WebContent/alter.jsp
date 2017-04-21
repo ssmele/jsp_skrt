@@ -14,6 +14,7 @@ session.setAttribute("th_list", temp_th_list);
 
 <%@ include file="displayTHs.jsp"%>
 
+<p> To alter a TH type the number to the left of it in this box and click the Choose button! </p>
 
 <form action="alterTH.jsp">
 	<input type="number" name="th_num"/>
