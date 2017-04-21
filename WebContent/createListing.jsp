@@ -26,6 +26,10 @@ Please provide information for new listing.
 	<p>Price per night:</p>
 	<input type="number" name="price_per_night"/>
 	<br/>
+	<br/>
+	<br/>
 	<input type="submit" value="Create Listing!"/>
+	<br/>
+	<br/>
 </form>
 <%@ include file="footer.jsp"%>

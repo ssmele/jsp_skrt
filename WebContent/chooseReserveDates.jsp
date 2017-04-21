@@ -4,7 +4,6 @@
 <%@ include file="header.jsp" %>
 
 <%
-
 ArrayList<Period> avaDates = (ArrayList<Period>) session.getAttribute("available_periods");
 ArrayList<ResPeriodPair> reservationCart = (ArrayList<ResPeriodPair>) session.getAttribute("reservation_cart");
 int index = Integer.parseInt(request.getParameter("index"));
